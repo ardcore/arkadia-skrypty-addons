@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>ard</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>porownanie</name>
+				<script>local mod = {
+	["jestes"] = -1,
+	["jest"] = 1
+}
+
+local level = {
+  ["rownie dobrze zbudowany"] = 0,
+  ["niewiele lepiej zbudowany"] = 1,
+  ["troche lepiej zbudowany"] = 2,
+  ["lepiej zbudowany"] = 3,
+  ["znacznie lepiej zbudowany"] = 4,
+	["duzo lepiej zbudowany"] = 5,
+
+  ["rownie silny"] = 0,
+  ["niewiele silniejszy"] = 1, 
+  ["troche silniejszy"] = 2,
+  ["silniejszy"] = 3,
+  ["znacznie silniejszy"] = 4, 
+  ["duzo silniejszy"] = 5,
+
+  ["rownie zreczny"] = 0,
+  ["niewiele zreczniejszy"] = 1, 
+  ["troche zreczniejszy"] = 2,
+  ["zreczniejszy"] = 3, 
+  ["znacznie zreczniejszy"] = 4, 
+  ["duzo zreczniejszy"] = 5,
+
+	-- because I suck at lua regexps, obviously
+	
+  ["rownie dobrze zbudowana"] = 0,
+  ["niewiele lepiej zbudowana"] = 1,
+  ["troche lepiej zbudowana"] = 2,
+  ["lepiej zbudowana"] = 3,
+  ["znacznie lepiej zbudowana"] = 4,
+	["duzo lepiej zbudowana"] = 5,
+
+  ["rownie silna"] = 0,
+  ["niewiele silniejsza"] = 1, 
+  ["troche silniejsza"] = 2,
+  ["silniejsza"] = 3,
+  ["znacznie silniejsza"] = 4, 
+  ["duzo silniejsza"] = 5,
+
+  ["rownie zreczna"] = 0,
+  ["niewiele zreczniejsza"] = 1, 
+  ["troche zreczniejsza"] = 2,
+  ["zreczniejsza"] = 3, 
+  ["znacznie zreczniejsza"] = 4, 
+  ["duzo zreczniejsza"] = 5,
+
+  ["rownie dobrze zbudowane"] = 0,
+  ["niewiele lepiej zbudowane"] = 1,
+  ["troche lepiej zbudowane"] = 2,
+  ["lepiej zbudowane"] = 3,
+  ["znacznie lepiej zbudowane"] = 4,
+	["duzo lepiej zbudowane"] = 5,
+
+  ["rownie silne"] = 0,
+  ["niewiele silniejsze"] = 1, 
+  ["troche silniejsze"] = 2,
+  ["silniejsze"] = 3,
+  ["znacznie silniejsze"] = 4, 
+  ["duzo silniejsze"] = 5,
+
+  ["rownie zreczne"] = 0,
+  ["niewiele zreczniejsze"] = 1, 
+  ["troche zreczniejsze"] = 2,
+  ["zreczniejsze"] = 3, 
+  ["znacznie zreczniejsze"] = 4, 
+  ["duzo zreczniejsze"] = 5
+}
+
+local target = matches[2]
+local desc = matches[3]
+local res = mod[target] * level[desc]
+table.insert(scripts.ard.current_compare_results, res)
+deleteLine()
+
+if table.size(scripts.ard.current_compare_results) == scripts.ard.current_compare_count then
+	disableTrigger("porownanie")
+	porownanieAfter(scripts.ard.current_compare_results)
+end
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>Wydaje ci sie, ze (jest|jestes) (.*) jak (.*)</string>
+					<string>Masz wrazenie, ze (jest|jestes) (.*) niz (.*)</string>
+					<string>^Wydaje ci sie, ze (jest|jestes) (.*) (?:jak|niz) (.*)</string>
+					<string>^Masz wrazenie, ze (jest|jestes) (.*) (?:jak|niz) (.*)</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+					<integer>1</integer>
+					<integer>1</integer>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>ard</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>wdp</name>
+				<script>local res = split(matches[2], ",")
+for _,item in ipairs(res) do
+   send("wloz " .. item .. " do " .. scripts.inv:get_bag_string_dopelniacz("other"), false)
+end</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^/wdp (.*)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>wzp</name>
+				<script>local res = split(matches[2], ",")
+for _,item in ipairs(res) do
+   send("wez " .. item .. " z " .. scripts.inv:get_bag_string_dopelniacz("other")) 
+end</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^/wzp (.*)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>zbieraj_extra</name>
+				<script>scripts.inv.collect_extra(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^/zbieraj_extra(?: )?(.*)?$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>zbierz</name>
+				<script>function afterCounting(bodies_count)
+	local count = scripts.counted_string_to_int[bodies_count]
+	cecho(count .. "\n")
+	killTrigger(dead_bodies_trigg)
+	for i = 1,count,1 do
+		cecho("aha\n")
+		scripts.inv.collect:key_pressed(true, i)
+	end
+end
+
+
+dead_bodies_trigg = tempRegexTrigger("^.*Doliczyl.s sie ([a-z]+) sztuk(|i)\.$", [[afterCounting(matches[2]) ]])
+enableTrigger(dead_bodies_trigg)
+send("policz wszystkie ciala")
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^/zbierz(?: )?(.*)?$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>pokaz_trase</name>
+				<script>local function cancelHighlight()
+  for i=1,table.size(speedWalkPath) do
+  	unHighlightRoom( tonumber(speedWalkPath[i]) )
+  end	
+end
+
+local path = getPath(amap.curr.id, matches[2])
+
+for i=1,table.size(speedWalkPath) do
+	highlightRoom(tonumber(speedWalkPath[i]), 0, 130, 130, 200, 200, 200, 1, 255, 255)
+end
+cecho("Odleglosc: " .. table.size(speedWalkPath) .. "\n")
+tempTimer(1, cancelHighlight)
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^/(?:pokaz_trase|p) (.*)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>porownaj_ze_wszystkimi</name>
+				<script>local objects_to_check = {}
+
+for k, v in pairs(gmcp.objects.nums) do
+  if v ~= ateam.my_id then
+    table.insert(objects_to_check, v)
+  end
+end
+scripts.ard.current_compare_results = {}
+scripts.ard.current_compare_count = table.size(objects_to_check) * 3
+enableTrigger("porownanie")
+
+for _, v in pairs(objects_to_check) do
+	send("porownaj sile z ob_" .. v, false)
+	send("porownaj zrecznosc z ob_" .. v, false)
+	send("porownaj wytrzymalosc z ob_" .. v, false)
+end
+
+local function format(v)
+	return v &gt; 0 and "+" .. tostring(v) or tostring(v)
+end
+
+function porownanieAfter(results)
+	cecho("\n\n")
+	local iter = 1
+	local out = {
+    {"#", "OSOBA", "SIL", "ZRE", "WYT", "TOTAL"}
+	}
+	for i=1, table.size(results), 3 do
+		local id = objects_to_check[iter]
+		local obj = ateam.objs[id]
+		local str = results[i]
+		local dex = results[i+1]
+		local con = results[i+2]
+		local total = str + dex + con
+  	table.insert(out, {iter, obj.desc, format(str), format(dex), format(con), format(total)})
+		iter = iter + 1
+	end
+	local pt = prettyTable(out)
+	cecho(pt)
+end</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^/(?:porownaj_ze_wszystkimi|pw)$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>fake</name>
+				<script>local s = matches[2]
+
+s = string.gsub(s, "%$", "\n")
+feedTriggers("\n" .. s .. "\n")
+echo("\n")</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^/fake (.*)$</regex>
+			</Alias>
+		</AliasGroup>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>ard</name>
+			<packageName></packageName>
+			<script>scripts["ard"] = scripts["ard"] or {current_compare_results = {}}</script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>utils</name>
+				<packageName></packageName>
+				<script>function split(str, sep)
+   local result = {}
+   local regex = ("([^%s]+)"):format(sep)
+   for each in str:gmatch(regex) do
+      table.insert(result, each)
+   end
+   return result
+end
+
+table.reduce = function (list, fn) 
+    local acc
+    for k, v in ipairs(list) do
+        if 1 == k then
+            acc = v
+        else
+            acc = fn(acc, v)
+        end 
+    end 
+    return acc 
+end
+
+table.sum = function (t)
+  return table.reduce(
+    t,
+    function (a, b)
+        return a + b
+    end
+)
+end
+
+function chunk(t, size)
+	local out = {}
+	for i=1, #t, size do
+		local row = {}
+    for j=0,size-1 do
+      table.insert(row, t[i + j])
+    end
+		table.insert(out, row)
+	end
+	return out
+end
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>collect</name>
+				<packageName></packageName>
+				<script>scripts.inv.collect.extra = nil
+
+function scripts.inv.collect_extra(target)
+	if target == "" then
+		if scripts.inv.collect.extra == nil then
+			cecho("Nic nie zbierasz dodatkowo.\n")
+		else
+			cecho("Zbierasz dodatkowo: " .. scripts.inv.collect.extra .. "\n")
+			cecho("/zbieraj_extra off aby wylaczyc\n")
+		end
+	elseif target == "off" then
+  	scripts.inv.collect.extra = nil
+	else
+		scripts.inv.collect.extra = target
+	end
+end
+
+-- below we override adremen's functions
+function scripts.inv.collect:key_pressed(force, index)
+	local from = "ciala"
+	if index ~= nil then
+		from = scripts.id_to_string_biernik[index] .. " ciala"
+	end
+  if scripts.inv.collect.check_body or force == true then
+    if scripts.inv.collect["current_mode"] == 1 or scripts.inv.collect["current_mode"] == 3
+       or scripts.inv.collect["current_mode"] == 4 or scripts.inv.collect["current_mode"] == 6 then
+      if scripts.inv.collect.money_type == 1 then
+        sendAll("wez monety z " .. from, true)
+			elseif scripts.inv.collect.money_type == 2 then
+        sendAll("wez srebrne monety z " .. from, "wez zlote monety z " .. from, true)
+		  elseif scripts.inv.collect.money_type == 3 then
+			  sendAll("wez zlote monety z " .. from, true)
+		  end
+		  sendAll("wloz monety do " .. scripts.inv:get_bag_string_dopelniacz("money"),
+               true)
+    end
+    if scripts.inv.collect["current_mode"] == 2 or scripts.inv.collect["current_mode"] == 3
+       or scripts.inv.collect["current_mode"] == 5 or scripts.inv.collect["current_mode"] == 6 then
+      sendAll("wez kamienie z " .. from, 
+              "ocen kamienie",
+              "wloz kamienie do " .. scripts.inv:get_bag_string_dopelniacz("stones"),
+              false)
+    end
+		if scripts.inv.collect.extra ~= nil then
+			local items = split(scripts.inv.collect.extra, ",")
+			for _,item in ipairs(items) do
+        sendAll("wez " .. item .. " z " .. from,
+								"wloz " .. item .. " do " .. scripts.inv:get_bag_string_dopelniacz("other"))
+      end
+		end
+    scripts.inv.collect.check_body = false
+  end
+end
+
+function scripts.inv.collect:killed_action()
+  if scripts.inv.collect["current_mode"] ~= 7 or scripts.inv.collect.extra ~= nil then
+    cecho("\n" .. scripts.ui.bind_color .. "[bind &lt;yellow&gt;ctrl+3!]" .. scripts.ui.bind_color .. " wez z ciala\n")
+    scripts.inv.collect.check_body = true
+  end
+end
+
+function scripts.inv.collect:team_killed_action(name)
+  if scripts.inv.collect["current_mode"] ~= 4 and scripts.inv.collect["current_mode"] ~= 5 and scripts.inv.collect.extra == nil
+     and scripts.inv.collect["current_mode"] ~= 6 then
+    return
+  end
+
+  if ateam.team_names[name] then
+    cecho("\n" .. scripts.ui.bind_color .. "[bind &lt;yellow&gt;ctrl+3!]" .. scripts.ui.bind_color .." wez z ciala\n")
+    scripts.inv.collect.check_body = true
+  end
+end
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>mapper</name>
+				<packageName></packageName>
+				<script>-- override Adremen's stuff
+function amap.db:get_printable_rooms(rooms)
+  if not rooms then
+    error("Wrong input")
+  end
+
+  local s = ""
+
+  for k, v in pairs(rooms) do
+    s = s .. "&lt;green&gt;" .. string.sub(tostring(v) .. "        ", 1, 8) .. "&lt;grey&gt; | "
+    s = s .. string.sub(getRoomName(v) .. "                                                                                                   ", 1, 72)
+		s = s .. "Odleglosc: " .. amap.db:calculate_path_cost(amap.curr.id, v) .. "\n"
+  end
+
+  return s
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>pretty_table</name>
+				<packageName></packageName>
+				<script>function buildColumnLengthTable(input, index)
+  local lTable = {}
+  for k, v in pairs(input) do
+    table.insert(lTable, string.len(input[k][index]))
+  end
+  return lTable
+end
+
+function getColumnLength(input, index)
+  local lengths = buildColumnLengthTable(input, index)
+  local max = math.max(unpack(lengths))
+  return max
+end
+
+function calculatePad(str, max)
+  return max - string.len(str)
+end
+
+function prettyTable(input)
+  local lengths = {}
+  local output = ""
+  for k, v in pairs(input[1]) do
+    local l = getColumnLength(input, k)
+    table.insert(lengths, l)
+  end
+
+  for kk, vv in pairs(input) do
+    for kkk, vvv in pairs(input[kk]) do
+      local pad = calculatePad(vvv, lengths[kkk])
+      output = output .. " " .. vvv .." " .. string.rep(" ", pad)
+    end
+    output = output .. "\n"
+  end
+  
+  return output
+end</script>
+				<eventHandlerList />
+			</Script>
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+	<VariablePackage>
+		<HiddenVariables />
+	</VariablePackage>
+</MudletPackage>
