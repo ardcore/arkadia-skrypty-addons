@@ -1,4 +1,4 @@
-# Arkadia - Skrypty
+# Arkadia - Addons
 
 Skrypty rozszerzające paczkę Adremena.
 
@@ -10,8 +10,8 @@ Skrypty rozszerzające paczkę Adremena.
 - `/zbieraj_extra <co>` - dodatek do Adremenowego zbierania monet/kamieni, pozwala zdefiniować inne przedmioty do brania z ciał. Można podać kilka po przecinku. (np. /zbieraj_extra posrebrzane miecze,tarcze)
     - `/zbieraj_extra` bez parametrów pokazuje co obecnie zbieramy
     - `/zbieraj_extra off` wyłącza zbieranie
-- `/pokaz_trase <id>` - skrót: `/p` - podswietli na mapie (na chwile) sciezke do <id>
-- `/porownaj_ze_wszystkimi` - skrót `/pr` - pokaże tabelkę z porównaniem cech osób na lokacji względem Ciebie:
+- `/pokaz_trase <id>` - skrót: `/p` - podswietli na mapie (na chwile) sciezke do `<id>`
+- `/porownaj_ze_wszystkimi` - skrót `/pw` - pokaże tabelkę z porównaniem cech osób na lokacji względem Ciebie:
 
         /porownaj_ze_wszystkimi
 
