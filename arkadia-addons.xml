@@ -115,8 +115,8 @@ end
 				<regexCodeList>
 					<string>Wydaje ci sie, ze (jest|jestes) (.*) jak (.*)</string>
 					<string>Masz wrazenie, ze (jest|jestes) (.*) niz (.*)</string>
-					<string>^Wydaje ci sie, ze (jest|jestes) (.*) (?:jak|niz) (.*)</string>
-					<string>^Masz wrazenie, ze (jest|jestes) (.*) (?:jak|niz) (.*)</string>
+					<string>Wydaje ci sie, ze (jest|jestes) (.*) (?:jak|niz) (.*)</string>
+					<string>Masz wrazenie, ze (jest|jestes) (.*) (?:jak|niz) (.*)</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -169,7 +169,6 @@ end</script>
 	cecho(count .. "\n")
 	killTrigger(dead_bodies_trigg)
 	for i = 1,count,1 do
-		cecho("aha\n")
 		scripts.inv.collect:key_pressed(true, i)
 	end
 end
@@ -375,7 +374,7 @@ end
 
 function scripts.inv.collect:killed_action()
   if scripts.inv.collect["current_mode"] ~= 7 or scripts.inv.collect.extra ~= nil then
-    cecho("\n" .. scripts.ui.bind_color .. "[bind &lt;yellow&gt;ctrl+3!]" .. scripts.ui.bind_color .. " wez z ciala\n")
+    cecho("\n" .. scripts.ui.bind_color .. "[bind &lt;yellow&gt;ctrl+3]" .. scripts.ui.bind_color .. " wez z ciala\n")
     scripts.inv.collect.check_body = true
   end
 end
@@ -387,7 +386,7 @@ function scripts.inv.collect:team_killed_action(name)
   end
 
   if ateam.team_names[name] then
-    cecho("\n" .. scripts.ui.bind_color .. "[bind &lt;yellow&gt;ctrl+3!]" .. scripts.ui.bind_color .." wez z ciala\n")
+    cecho("\n" .. scripts.ui.bind_color .. "[bind &lt;yellow&gt;ctrl+3]" .. scripts.ui.bind_color .." wez z ciala\n")
     scripts.inv.collect.check_body = true
   end
 end
@@ -459,7 +458,7 @@ end</script>
 		</ScriptGroup>
 	</ScriptPackage>
 	<KeyPackage />
-	<VariablePackage>
-		<HiddenVariables />
-	</VariablePackage>
+	<HelpPackage>
+		<helpURL></helpURL>
+	</HelpPackage>
 </MudletPackage>
